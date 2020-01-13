@@ -146,7 +146,7 @@ namespace Session1
                                               select x).First();
                         updateResource.remainingQuantity = Int32.Parse(txtQuantityBox.Text);
                     }
-                    else if (Int32.Parse(txtQuantityBox.Text) > 0 && clbAllocation.SelectedItems != null)
+                    else if (Int32.Parse(txtQuantityBox.Text) > 0)
                     {
                         var updateResource = (from x in context.Resources
                                               where x.resId == _resID

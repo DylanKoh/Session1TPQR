@@ -104,7 +104,7 @@ namespace Session1
 
                         }
 
-                        else if (Int32.Parse(quantityBox.Text) > 0 && allocationBox.SelectedItems != null)
+                        else if (Int32.Parse(quantityBox.Text) > 0)
                         {
                             var getTypeID = (from x in context.Resource_Type
                                              where x.resTypeName == typeBox.SelectedItem.ToString()
