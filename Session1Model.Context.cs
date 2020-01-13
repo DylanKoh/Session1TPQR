@@ -13,10 +13,10 @@ namespace Session1
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Session1QREntities : DbContext
+    public partial class Session1Entities : DbContext
     {
-        public Session1QREntities()
-            : base("name=Session1QREntities")
+        public Session1Entities()
+            : base("name=Session1Entities")
         {
         }
     

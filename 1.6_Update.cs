@@ -22,7 +22,7 @@ namespace Session1
 
         private void Update_Load(object sender, EventArgs e)
         {
-            using (var context = new Session1QREntities())
+            using (var context = new Session1Entities())
             {
                 var getSkills = (from x in context.Skills
                                  select x.skillName);
@@ -114,7 +114,7 @@ namespace Session1
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            using (var context = new Session1QREntities())
+            using (var context = new Session1Entities())
             {
 
                 if (txtQuantityBox.Text == null)

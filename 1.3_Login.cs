@@ -19,7 +19,7 @@ namespace Session1
 
         private void loginBtn_Click(object sender, EventArgs e)
         {
-            using (var context = new Session1QREntities())
+            using (var context = new Session1Entities())
             {
                 if (userBox.Text.Trim() == "")
                 {

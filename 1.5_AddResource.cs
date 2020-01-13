@@ -20,7 +20,7 @@ namespace Session1
 
         private void AddResource_Load(object sender, EventArgs e)
         {
-            using (var context = new Session1QREntities())
+            using (var context = new Session1Entities())
             {
                 var getType = (from x in context.Resource_Type
                                select x.resTypeName);
@@ -50,7 +50,7 @@ namespace Session1
 
         private void addBtn_Click(object sender, EventArgs e)
         {
-            using (var context = new Session1QREntities())
+            using (var context = new Session1Entities())
             {
                 var checkResourceExistence = (from x in context.Resources
                                               where x.resName == resourceNameBox.Text

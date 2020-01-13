@@ -26,7 +26,7 @@ namespace Session1
 
         private void ResourceManagement_Load(object sender, EventArgs e)
         {
-            using (var context = new Session1QREntities())
+            using (var context = new Session1Entities())
             {
                 HashSet<string> type = new HashSet<string>();
                 var getTypes = (from x in context.Resource_Type
@@ -63,7 +63,7 @@ namespace Session1
             dataGridView1.Columns[5].Name = "Resource ID";
             dataGridView1.Columns[5].Visible = false;
 
-            using (var context = new Session1QREntities())
+            using (var context = new Session1Entities())
             {
                 if (typeBox.SelectedItem != null && skilBox.SelectedItem != null)
                 {
@@ -300,7 +300,7 @@ namespace Session1
             {
                 var getResourceID = Convert.ToInt32(dataGridView1.CurrentRow.Cells[5].Value);
 
-                using (var context = new Session1QREntities())
+                using (var context = new Session1Entities())
                 {
                     var getResourceDelete = (from x in context.Resources
                                              where x.resId == getResourceID
@@ -341,7 +341,7 @@ namespace Session1
             }
             else
             {
-                using (var context = new Session1QREntities())
+                using (var context = new Session1Entities())
                 {
                     var resName = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                     var getID = (from x in context.Resources
