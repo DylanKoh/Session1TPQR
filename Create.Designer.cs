@@ -49,7 +49,7 @@
             this.label1.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(530, 47);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(314, 32);
+            this.label1.Size = new System.Drawing.Size(254, 26);
             this.label1.TabIndex = 0;
             this.label1.Text = "New Account Creation";
             // 
@@ -58,7 +58,7 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(167, 168);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(139, 25);
+            this.label2.Size = new System.Drawing.Size(111, 18);
             this.label2.TabIndex = 1;
             this.label2.Text = "User Name: ";
             // 
@@ -67,7 +67,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(88, 236);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(218, 25);
+            this.label3.Size = new System.Drawing.Size(174, 18);
             this.label3.TabIndex = 2;
             this.label3.Text = "User ID (For login): ";
             // 
@@ -76,7 +76,7 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(185, 301);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 25);
+            this.label4.Size = new System.Drawing.Size(98, 18);
             this.label4.TabIndex = 3;
             this.label4.Text = "Password: ";
             // 
@@ -85,7 +85,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(88, 361);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(218, 25);
+            this.label5.Size = new System.Drawing.Size(175, 18);
             this.label5.TabIndex = 4;
             this.label5.Text = "Re-Enter Password: ";
             // 
@@ -94,7 +94,7 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(179, 420);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(127, 25);
+            this.label6.Size = new System.Drawing.Size(101, 18);
             this.label6.TabIndex = 5;
             this.label6.Text = "User Type: ";
             // 
@@ -102,28 +102,30 @@
             // 
             this.userNameBox.Location = new System.Drawing.Point(312, 165);
             this.userNameBox.Name = "userNameBox";
-            this.userNameBox.Size = new System.Drawing.Size(680, 32);
+            this.userNameBox.Size = new System.Drawing.Size(680, 27);
             this.userNameBox.TabIndex = 6;
             // 
             // userIdBox
             // 
             this.userIdBox.Location = new System.Drawing.Point(312, 233);
             this.userIdBox.Name = "userIdBox";
-            this.userIdBox.Size = new System.Drawing.Size(680, 32);
+            this.userIdBox.Size = new System.Drawing.Size(680, 27);
             this.userIdBox.TabIndex = 7;
             // 
             // passwordBox
             // 
             this.passwordBox.Location = new System.Drawing.Point(312, 298);
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.Size = new System.Drawing.Size(680, 32);
+            this.passwordBox.PasswordChar = '*';
+            this.passwordBox.Size = new System.Drawing.Size(680, 27);
             this.passwordBox.TabIndex = 8;
             // 
             // rePasswordBox
             // 
             this.rePasswordBox.Location = new System.Drawing.Point(312, 358);
             this.rePasswordBox.Name = "rePasswordBox";
-            this.rePasswordBox.Size = new System.Drawing.Size(680, 32);
+            this.rePasswordBox.PasswordChar = '*';
+            this.rePasswordBox.Size = new System.Drawing.Size(680, 27);
             this.rePasswordBox.TabIndex = 9;
             // 
             // typeUserBox
@@ -132,7 +134,7 @@
             this.typeUserBox.FormattingEnabled = true;
             this.typeUserBox.Location = new System.Drawing.Point(312, 417);
             this.typeUserBox.Name = "typeUserBox";
-            this.typeUserBox.Size = new System.Drawing.Size(483, 33);
+            this.typeUserBox.Size = new System.Drawing.Size(483, 26);
             this.typeUserBox.TabIndex = 10;
             // 
             // backBtn
@@ -157,7 +159,7 @@
             // 
             // Create
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 703);
             this.Controls.Add(this.createBtn);
@@ -174,7 +176,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Create";
             this.Text = "Create";
             this.Load += new System.EventHandler(this.Create_Load);

@@ -69,5 +69,12 @@ namespace Session1
                 }
             }
         }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            (new Main()).ShowDialog();
+            this.Close();
+        }
     }
 }

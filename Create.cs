@@ -20,7 +20,7 @@ namespace Session1
         private void Create_Load(object sender, EventArgs e)
         {
             HashSet<string> vs = new HashSet<string>();
-            using (var context  = new Session1QREntities())
+            using (var context = new Session1QREntities())
             {
                 var getType = (from x in context.User_Type
                                select x.userTypeName);
@@ -58,20 +58,32 @@ namespace Session1
                 }
                 else
                 {
-                    var getUserTypeID = (from x in context.User_Type
-                                         where x.userTypeName == typeUserBox.SelectedItem.ToString()
-                                         select x.userTypeId).First();
-                    context.Users.Add(new User()
+                    var checkUserID = (from x in context.Users
+                                       where x.userId == userIdBox.Text
+                                       select x).FirstOrDefault();
+                    if (checkUserID == null)
                     {
-                        userName = userNameBox.Text,
-                        userId = userIdBox.Text,
-                        userPw = passwordBox.Text,
-                        userTypeIdFK = getUserTypeID
-                    });
-                    context.SaveChanges();
-                    this.Hide();
-                    (new Main()).ShowDialog();
-                    this.Close();
+                        var getUserTypeID = (from x in context.User_Type
+                                             where x.userTypeName == typeUserBox.SelectedItem.ToString()
+                                             select x.userTypeId).First();
+                        context.Users.Add(new User()
+                        {
+                            userName = userNameBox.Text,
+                            userId = userIdBox.Text,
+                            userPw = passwordBox.Text,
+                            userTypeIdFK = getUserTypeID
+                        });
+                        context.SaveChanges();
+                        this.Hide();
+                        (new Main()).ShowDialog();
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("User ID already exist! Please choose another ID!", "Used ID",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
                 }
             }
         }

@@ -102,29 +102,17 @@ namespace Session1
                                 remainingQuantity = Int32.Parse(quantityBox.Text),
                                 resTypeIdFK = getTypeID
                             });
-                            #region Trial edits
-                            foreach (var item in list)
+                            if (list.Count() != 0)
                             {
-                                var getSkillID = (from x in context.Skills
-                                                  where x.skillName == item
-                                                  select x.skillId).First();
-                                context.Resource_Allocation.Add(new Resource_Allocation() { resIdFK = getNewID, skillIdFK = getSkillID });
+                                foreach (var item in list)
+                                {
+                                    var getSkillID = (from x in context.Skills
+                                                      where x.skillName == item
+                                                      select x.skillId).First();
+                                    context.Resource_Allocation.Add(new Resource_Allocation() { resIdFK = getNewID, skillIdFK = getSkillID });
+                                }
                             }
-                            #endregion
-
-                        }
-                        else if (Int32.Parse(quantityBox.Text) > 0 )
-                        {
-
-                            /*foreach (var item in allocationBox.CheckedItems)
-                            {
-                                var getSkillID = (from x in context.Skills
-                                                  where x.skillName == item.ToString()
-                                                  select x.skillId).First();
-                                context.Resource_Allocation.Add(new Resource_Allocation() { resIdFK = getNewID, skillIdFK = getSkillID });
-                            }*/
                             
-
 
                         }
 

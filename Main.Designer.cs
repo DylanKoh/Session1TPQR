@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.createBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -36,7 +37,7 @@
             // 
             this.createBtn.Font = new System.Drawing.Font("Verdana", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createBtn.Location = new System.Drawing.Point(110, 120);
-            this.createBtn.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.createBtn.Margin = new System.Windows.Forms.Padding(5);
             this.createBtn.Name = "createBtn";
             this.createBtn.Size = new System.Drawing.Size(861, 117);
             this.createBtn.TabIndex = 0;
@@ -48,7 +49,7 @@
             // 
             this.button2.Font = new System.Drawing.Font("Verdana", 7.8F);
             this.button2.Location = new System.Drawing.Point(110, 353);
-            this.button2.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.button2.Margin = new System.Windows.Forms.Padding(5);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(861, 117);
             this.button2.TabIndex = 1;
@@ -58,13 +59,14 @@
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1146, 650);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.createBtn);
             this.Font = new System.Drawing.Font("Verdana", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(5);
             this.Name = "Main";
             this.Text = "ASEAN Skills 2020";
             this.ResumeLayout(false);
