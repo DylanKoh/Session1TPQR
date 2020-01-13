@@ -50,7 +50,7 @@ namespace Session1
         }
 
         /// <summary>
-        /// To load Datagridview componenets
+        /// To load Datagridview components
         /// </summary>
         private void GridRefresh()
         {
