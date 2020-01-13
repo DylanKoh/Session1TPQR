@@ -77,6 +77,7 @@ namespace Session1
                     var getResources = (from x in context.Resources
                                         join y in context.Resource_Allocation on x.resId equals y.resIdFK
                                         where y.skillIdFK == getSkillID && x.resTypeIdFK == getTypeID
+                                        orderby x.remainingQuantity descending
                                         select x).ToList();
 
                     foreach (var resources in getResources)
@@ -122,6 +123,7 @@ namespace Session1
 
                     var getResources = (from x in context.Resources
                                         where x.resTypeIdFK == getTypeID
+                                        orderby x.remainingQuantity descending
                                         select x).ToList();
 
                     foreach (var resources in getResources)
@@ -169,6 +171,7 @@ namespace Session1
                     var getResources = (from x in context.Resources
                                         join y in context.Resource_Allocation on x.resId equals y.resIdFK
                                         where y.skillIdFK == getSkillID
+                                        orderby x.remainingQuantity descending
                                         select x).ToList();
 
                     foreach (var resources in getResources)
@@ -209,6 +212,7 @@ namespace Session1
                 else
                 {
                     var getResources = (from x in context.Resources
+                                        orderby x.remainingQuantity descending
                                         select x).ToList();
 
                     foreach (var resources in getResources)

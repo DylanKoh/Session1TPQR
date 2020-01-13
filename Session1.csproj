@@ -55,23 +55,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddResource.cs">
+    <Compile Include="1.5_AddResource.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AddResource.Designer.cs">
-      <DependentUpon>AddResource.cs</DependentUpon>
+    <Compile Include="1.5_AddResource.Designer.cs">
+      <DependentUpon>1.5_AddResource.cs</DependentUpon>
     </Compile>
-    <Compile Include="Create.cs">
+    <Compile Include="1.2_Create.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Create.Designer.cs">
-      <DependentUpon>Create.cs</DependentUpon>
+    <Compile Include="1.2_Create.Designer.cs">
+      <DependentUpon>1.2_Create.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="1.3_Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
-      <DependentUpon>Login.cs</DependentUpon>
+    <Compile Include="1.3_Login.Designer.cs">
+      <DependentUpon>1.3_Login.cs</DependentUpon>
     </Compile>
     <Compile Include="1.1_Main.cs">
       <SubType>Form</SubType>
@@ -84,11 +84,11 @@
     <Compile Include="Resource.cs">
       <DependentUpon>Session1Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ResourceManagement.cs">
+    <Compile Include="1.4_ResourceManagement.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ResourceManagement.Designer.cs">
-      <DependentUpon>ResourceManagement.cs</DependentUpon>
+    <Compile Include="1.4_ResourceManagement.Designer.cs">
+      <DependentUpon>1.4_ResourceManagement.cs</DependentUpon>
     </Compile>
     <Compile Include="Resource_Allocation.cs">
       <DependentUpon>Session1Model.tt</DependentUpon>
@@ -120,14 +120,14 @@
     <Compile Include="User_Type.cs">
       <DependentUpon>Session1Model.tt</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AddResource.resx">
-      <DependentUpon>AddResource.cs</DependentUpon>
+    <EmbeddedResource Include="1.5_AddResource.resx">
+      <DependentUpon>1.5_AddResource.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Create.resx">
-      <DependentUpon>Create.cs</DependentUpon>
+    <EmbeddedResource Include="1.2_Create.resx">
+      <DependentUpon>1.2_Create.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
-      <DependentUpon>Login.cs</DependentUpon>
+    <EmbeddedResource Include="1.3_Login.resx">
+      <DependentUpon>1.3_Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="1.1_Main.resx">
       <DependentUpon>1.1_Main.cs</DependentUpon>
@@ -141,8 +141,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="ResourceManagement.resx">
-      <DependentUpon>ResourceManagement.cs</DependentUpon>
+    <EmbeddedResource Include="1.4_ResourceManagement.resx">
+      <DependentUpon>1.4_ResourceManagement.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
