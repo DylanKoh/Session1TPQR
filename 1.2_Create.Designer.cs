@@ -41,13 +41,16 @@
             this.typeUserBox = new System.Windows.Forms.ComboBox();
             this.backBtn = new System.Windows.Forms.Button();
             this.createBtn = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Verdana", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(530, 47);
+            this.label1.Location = new System.Drawing.Point(513, 86);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(254, 26);
             this.label1.TabIndex = 0;
@@ -139,9 +142,9 @@
             // 
             // backBtn
             // 
-            this.backBtn.Location = new System.Drawing.Point(13, 32);
+            this.backBtn.Location = new System.Drawing.Point(12, 12);
             this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(165, 67);
+            this.backBtn.Size = new System.Drawing.Size(153, 53);
             this.backBtn.TabIndex = 11;
             this.backBtn.Text = "Back";
             this.backBtn.UseVisualStyleBackColor = true;
@@ -157,13 +160,35 @@
             this.createBtn.UseVisualStyleBackColor = true;
             this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.Maroon;
+            this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.backBtn);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1300, 83);
+            this.panel1.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Verdana", 16F);
+            this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label7.Location = new System.Drawing.Point(1072, 30);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(216, 26);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "ASEAN Skills 2020";
+            // 
             // Create
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1300, 703);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.createBtn);
-            this.Controls.Add(this.backBtn);
             this.Controls.Add(this.typeUserBox);
             this.Controls.Add(this.rePasswordBox);
             this.Controls.Add(this.passwordBox);
@@ -180,6 +205,8 @@
             this.Name = "Create";
             this.Text = "Create";
             this.Load += new System.EventHandler(this.Create_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +227,7 @@
         private System.Windows.Forms.ComboBox typeUserBox;
         private System.Windows.Forms.Button backBtn;
         private System.Windows.Forms.Button createBtn;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label7;
     }
 }

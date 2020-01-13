@@ -30,6 +30,15 @@ namespace Session1
                     resouceType.Add(item);
                 }
                 typeBox.Items.AddRange(resouceType.ToArray());
+
+                var getSkills = (from x in context.Skills
+                                 select x.skillName);
+                var skills = new HashSet<string>();
+                foreach (var item in getSkills)
+                {
+                    skills.Add(item);
+                }
+                allocationBox.Items.AddRange(skills.ToArray());
             }
         }
 
@@ -73,6 +82,11 @@ namespace Session1
                         MessageBox.Show("Resource amount cannot be negative!", "Invalid Amount", MessageBoxButtons.OK,
                       MessageBoxIcon.Exclamation);
                     }
+                    else if (Int32.Parse(quantityBox.Text) == 0 && allocationBox.CheckedItems.Count > 0)
+                    {
+                        MessageBox.Show("Resource cannot be allocated if amount is 0", "Unable to allocate resource",
+                            MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    }
                     else
                     {
                         if (Int32.Parse(quantityBox.Text) == 0)
@@ -85,7 +99,7 @@ namespace Session1
                                 resId = getNewID,
                                 resName = resourceNameBox.Text,
                                 remainingQuantity = Int32.Parse(quantityBox.Text),
-                                resTypeIdFK = getNewID
+                                resTypeIdFK = getTypeID
                             });
 
                         }

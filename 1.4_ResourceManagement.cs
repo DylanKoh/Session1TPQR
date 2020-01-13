@@ -87,19 +87,23 @@ namespace Session1
                             resources.resName, resources.Resource_Type.resTypeName, resources.Resource_Allocation.Count().ToString()
                         };
                         string skillsAllocated = "";
-                        foreach (var skills in resources.Resource_Allocation)
+
+                        if (resources.Resource_Allocation.Where(x => x.resIdFK == resources.resId).Select(x => x).FirstOrDefault() == null)
                         {
-                            if (skillsAllocated != "")
+                            skillsAllocated += "NIL";
+                        }
+                        else
+                        {
+                            foreach (var skills in resources.Resource_Allocation)
                             {
-                                skillsAllocated += ", " + skills.Skill.skillName;
-                            }
-                            else if (skillsAllocated == "")
-                            {
-                                skillsAllocated += skills.Skill.skillName;
-                            }
-                            else if (skills.Skill == null)
-                            {
-                                skillsAllocated += "NIL";
+                                if (skillsAllocated != "")
+                                {
+                                    skillsAllocated += ", " + skills.Skill.skillName;
+                                }
+                                else if (skillsAllocated == "")
+                                {
+                                    skillsAllocated += skills.Skill.skillName;
+                                }
                             }
                         }
                         rows.Add(skillsAllocated);
@@ -133,19 +137,22 @@ namespace Session1
                             resources.resName, resources.Resource_Type.resTypeName, resources.Resource_Allocation.Count().ToString()
                         };
                         string skillsAllocated = "";
-                        foreach (var skills in resources.Resource_Allocation)
+                        if (resources.Resource_Allocation.Where(x => x.resIdFK == resources.resId).Select(x => x).FirstOrDefault() == null)
                         {
-                            if (skillsAllocated != "")
+                            skillsAllocated += "NIL";
+                        }
+                        else
+                        {
+                            foreach (var skills in resources.Resource_Allocation)
                             {
-                                skillsAllocated += ", " + skills.Skill.skillName;
-                            }
-                            else if (skillsAllocated == "")
-                            {
-                                skillsAllocated += skills.Skill.skillName;
-                            }
-                            else if (skills.Skill == null)
-                            {
-                                skillsAllocated += "NIL";
+                                if (skillsAllocated != "")
+                                {
+                                    skillsAllocated += ", " + skills.Skill.skillName;
+                                }
+                                else if (skillsAllocated == "")
+                                {
+                                    skillsAllocated += skills.Skill.skillName;
+                                }
                             }
                         }
                         rows.Add(skillsAllocated);
@@ -181,19 +188,22 @@ namespace Session1
                             resources.resName, resources.Resource_Type.resTypeName, resources.Resource_Allocation.Count().ToString()
                         };
                         string skillsAllocated = "";
-                        foreach (var skills in resources.Resource_Allocation)
+                        if (resources.Resource_Allocation.Where(x => x.resIdFK == resources.resId).Select(x => x).FirstOrDefault() == null)
                         {
-                            if (skillsAllocated != "")
+                            skillsAllocated += "NIL";
+                        }
+                        else
+                        {
+                            foreach (var skills in resources.Resource_Allocation)
                             {
-                                skillsAllocated += ", " + skills.Skill.skillName;
-                            }
-                            else if (skillsAllocated == "")
-                            {
-                                skillsAllocated += skills.Skill.skillName;
-                            }
-                            else if (skills.Skill == null)
-                            {
-                                skillsAllocated += "NIL";
+                                if (skillsAllocated != "")
+                                {
+                                    skillsAllocated += ", " + skills.Skill.skillName;
+                                }
+                                else if (skillsAllocated == "")
+                                {
+                                    skillsAllocated += skills.Skill.skillName;
+                                }
                             }
                         }
                         rows.Add(skillsAllocated);
@@ -222,21 +232,26 @@ namespace Session1
                             resources.resName, resources.Resource_Type.resTypeName, resources.Resource_Allocation.Count().ToString()
                         };
                         string skillsAllocated = "";
-                        foreach (var skills in resources.Resource_Allocation)
+
+                        if (resources.Resource_Allocation.Where(x => x.resIdFK == resources.resId).Select(x => x).FirstOrDefault() == null)
                         {
-                            if (skillsAllocated != "")
+                            skillsAllocated += "NIL";
+                        }
+                        else
+                        {
+                            foreach (var skills in resources.Resource_Allocation)
                             {
-                                skillsAllocated += ", " + skills.Skill.skillName;
-                            }
-                            else if (skillsAllocated == "")
-                            {
-                                skillsAllocated += skills.Skill.skillName;
-                            }
-                            else if (skills.Skill == null)
-                            {
-                                skillsAllocated += "NIL";
+                                if (skillsAllocated != "")
+                                {
+                                    skillsAllocated += ", " + skills.Skill.skillName;
+                                }
+                                else if (skillsAllocated == "")
+                                {
+                                    skillsAllocated += skills.Skill.skillName;
+                                }
                             }
                         }
+                       
                         rows.Add(skillsAllocated);
                         var checkQuantity = (from x in context.Resources
                                              where x.resId == resources.resId
@@ -315,6 +330,28 @@ namespace Session1
             (new AddResource()).ShowDialog();
             dataGridView1.Rows.Clear();
             GridRefresh();
+        }
+
+        private void updateBtn_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.CurrentRow == null)
+            {
+                MessageBox.Show("Please select a resource to update!", "No resource selected",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                using (var context = new Session1QREntities())
+                {
+                    var resName = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    var getID = (from x in context.Resources
+                                 where x.resName == resName
+                                 select x.resId).First();
+                    this.Hide();
+                    (new Update(getID)).ShowDialog();
+                    this.Close();
+                }
+            }
         }
     }
 }
