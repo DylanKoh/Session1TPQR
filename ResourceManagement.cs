@@ -49,6 +49,9 @@ namespace Session1
             GridRefresh();
         }
 
+        /// <summary>
+        /// To load Datagridview componenets
+        /// </summary>
         private void GridRefresh()
         {
             dataGridView1.ColumnCount = 6;
