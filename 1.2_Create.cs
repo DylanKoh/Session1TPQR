@@ -65,6 +65,8 @@ namespace Session1
                 }
                 else
                 {
+                    //Check if User ID exist in the Database. If ID exist, prompt user an error message.
+                    //If not, allow creation of new account
                     var checkUserID = (from x in context.Users
                                        where x.userId == userIdBox.Text
                                        select x).FirstOrDefault();
