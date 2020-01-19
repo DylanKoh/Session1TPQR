@@ -28,6 +28,7 @@ namespace Session1
         {
             using (var context = new Session1Entities())
             {
+                #region Populating the Type of Resources Combo nox
                 HashSet<string> type = new HashSet<string>();
                 var getTypes = (from x in context.Resource_Type
                                 select x.resTypeName);
@@ -36,7 +37,9 @@ namespace Session1
                     type.Add(types);
                 }
                 typeBox.Items.AddRange(type.ToArray());
+                #endregion
 
+                #region Populating the skills from DB into the Skill's Combo box
                 HashSet<string> skill = new HashSet<string>();
                 var getSkills = (from x in context.Skills
                                  select x.skillName);
@@ -45,7 +48,10 @@ namespace Session1
                     skill.Add(skills);
                 }
                 skilBox.Items.AddRange(skill.ToArray());
+                #endregion
             }
+
+            //Initial loading of DGV with no fields/filters selected
             GridRefresh();
         }
 
@@ -65,6 +71,7 @@ namespace Session1
 
             using (var context = new Session1Entities())
             {
+                //Loads DGV for no filters
                 if (typeBox.SelectedItem != null && skilBox.SelectedItem != null)
                 {
                     var getTypeID = (from x in context.Resource_Type
@@ -119,6 +126,7 @@ namespace Session1
                     }
                 }
 
+                //Loads DGV when Type of Resource filter is selected
                 else if (typeBox.SelectedItem != null)
                 {
                     var getTypeID = (from x in context.Resource_Type
@@ -168,6 +176,7 @@ namespace Session1
                     }
                 }
 
+                //Loads DGV when Skill filter is selected
                 else if (skilBox.SelectedItem != null)
                 {
 
@@ -219,6 +228,8 @@ namespace Session1
                         dataGridView1.Rows.Add(rows.ToArray());
                     }
                 }
+
+                //Loads DGV when Type of Resource and Skill filters are selected
                 else
                 {
                     var getResources = (from x in context.Resources
@@ -268,6 +279,7 @@ namespace Session1
                 }
             }
 
+            //Runs through every row to check for "Not Available", then color those row pertaining that value with a red background
             foreach (DataGridViewRow rows in dataGridView1.Rows)
             {
                 if (rows.Cells[4].Value.ToString() == "Not Available")
@@ -277,25 +289,43 @@ namespace Session1
             }
         }
 
+        /// <summary>
+        /// When filter is selected, refresh the DGV by calling the method to load DGV components again
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void typeBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
             GridRefresh();
         }
 
+        /// <summary>
+        /// When filter is selected, refresh the DGV by calling the method to load DGV components again
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void skilBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             dataGridView1.Rows.Clear();
             GridRefresh();
         }
 
+        /// <summary>
+        /// This method is called when the delete button is triggered
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteBtn_Click(object sender, EventArgs e)
         {
+            //Checks if they is a selected row, else prompts user to select a row to delete
             if (dataGridView1.CurrentRow == null)
             {
                 MessageBox.Show("Please select a resource to delete!", "No resource selected", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
+
+            //Runs when VadCheck at If clause is passed
             else
             {
                 var getResourceID = Convert.ToInt32(dataGridView1.CurrentRow.Cells[5].Value);
@@ -325,6 +355,7 @@ namespace Session1
             
         }
 
+        //Directs User to Add Resource page - 1.5
         private void addBtn_Click(object sender, EventArgs e)
         {
             (new AddResource()).ShowDialog();
@@ -332,13 +363,17 @@ namespace Session1
             GridRefresh();
         }
 
+        //Directs User to Update Resource page - 1.6
         private void updateBtn_Click(object sender, EventArgs e)
         {
+            //Check if there is a selected row. Else prompts user to select a resource to update
             if (dataGridView1.CurrentRow == null)
             {
                 MessageBox.Show("Please select a resource to update!", "No resource selected",
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            //Runs and direct user with parsing correct resource information to update selected resource
             else
             {
                 using (var context = new Session1Entities())
