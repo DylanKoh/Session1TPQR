@@ -33,7 +33,7 @@ namespace Session1
                 typeBox.Items.AddRange(resouceType.ToArray());
                 #endregion
 
-                #region Populating Skill Combo Box
+                #region Populating Skill Allocation Checklist Box
                 var getSkills = (from x in context.Skills
                                  select x.skillName);
                 var skills = new HashSet<string>();

@@ -24,6 +24,7 @@ namespace Session1
         {
             using (var context = new Session1Entities())
             {
+                #region Populating Allocation Checklist Box
                 var getSkills = (from x in context.Skills
                                  select x.skillName);
                 var skills = new HashSet<string>();
@@ -32,7 +33,9 @@ namespace Session1
                     skills.Add(item);
                 }
                 clbAllocation.Items.AddRange(skills.ToArray());
+                #endregion
 
+                #region Initialising label text for selected resources
                 var getResourceName = (from x in context.Resources
                                        where x.resId == _resID
                                        select x.resName).First();
@@ -47,11 +50,14 @@ namespace Session1
                                          where x.resId == _resID
                                          select x.remainingQuantity).First();
                 txtQuantityBox.Text = getResourceAmount.ToString();
+                #endregion
 
+                #region Auto check skills that were previously allocated to for selected resource
                 var checkAllocatedSkills = (from x in context.Resource_Allocation
                                             where x.resIdFK == _resID
-                                            select x).FirstOrDefault();
+                                            select x).FirstOrDefault();               
 
+                
                 if (checkAllocatedSkills != null)
                 {
                     var getAllocatedSkills = (from x in context.Resource_Allocation
@@ -74,6 +80,7 @@ namespace Session1
                         context.SaveChanges();
                     }
                 }
+                #endregion
 
 
 
@@ -83,6 +90,7 @@ namespace Session1
 
         private void txtQuantityBox_TextChanged(object sender, EventArgs e)
         {
+            //Try converting value to int32. If user enters an invalid input, show an error message
             try
             {
                 var amount = Int32.Parse(txtQuantityBox.Text);
@@ -99,6 +107,11 @@ namespace Session1
         {
         }
 
+        /// <summary>
+        /// Whenever an item is checked, check if it exist in the global list and also whether trhe new value is equals to checked, then remove or add respectively for reference when saving to DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void clbAllocation_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var item = clbAllocation.SelectedItem.ToString();
@@ -112,21 +125,30 @@ namespace Session1
             }
         }
 
+        /// <summary>
+        /// This event is triggered when the update button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             using (var context = new Session1Entities())
             {
-
+                //Check if quantity is empty
                 if (txtQuantityBox.Text == null)
                 {
                     MessageBox.Show("Please check your entries again!", "Empty Field(s)", MessageBoxButtons.OK,
                    MessageBoxIcon.Exclamation);
                 }
+
+                //Check if quantity is more than 0 but no allocation of skill is made
                 else if (Int32.Parse(txtQuantityBox.Text) > 0 && clbAllocation.CheckedItems.Count == 0)
                 {
                     MessageBox.Show("Resource must have at least 1 allocated skill!", "Allocation of resource not set", MessageBoxButtons.OK,
                    MessageBoxIcon.Exclamation);
                 }
+
+                //Check if quantity is invalid as in negative / less than 0
                 else if (Int32.Parse(txtQuantityBox.Text) < 0)
                 {
                     MessageBox.Show("Resource amount cannot be negative!", "Invalid Amount", MessageBoxButtons.OK,
@@ -134,11 +156,14 @@ namespace Session1
                 }
                 else
                 {
+                    //Check if quantity is 0 but there is allocation(s) of skill
                     if (Int32.Parse(txtQuantityBox.Text) == 0 && clbAllocation.CheckedItems.Count > 0)
                     {
                         MessageBox.Show("Resource cannot be allocated if amount is 0", "Unable to allocate resource",
                             MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     }
+
+                    //If quantity is 0 and no allocation checks out, update amount to DB
                     else if (Int32.Parse(txtQuantityBox.Text) == 0 && clbAllocation.CheckedItems.Count == 0)
                     {
                         var updateResource = (from x in context.Resources
@@ -146,6 +171,8 @@ namespace Session1
                                               select x).First();
                         updateResource.remainingQuantity = Int32.Parse(txtQuantityBox.Text);
                     }
+
+                    //Else update everything into DB
                     else if (Int32.Parse(txtQuantityBox.Text) > 0)
                     {
                         var updateResource = (from x in context.Resources
