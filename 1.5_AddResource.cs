@@ -22,6 +22,7 @@ namespace Session1
         {
             using (var context = new Session1Entities())
             {
+                #region Populating the Type of Resources Combo Box
                 var getType = (from x in context.Resource_Type
                                select x.resTypeName);
                 HashSet<string> resouceType = new HashSet<string>();
@@ -30,7 +31,9 @@ namespace Session1
                     resouceType.Add(item);
                 }
                 typeBox.Items.AddRange(resouceType.ToArray());
+                #endregion
 
+                #region Populating Skill Combo Box
                 var getSkills = (from x in context.Skills
                                  select x.skillName);
                 var skills = new HashSet<string>();
@@ -39,15 +42,26 @@ namespace Session1
                     skills.Add(item);
                 }
                 allocationBox.Items.AddRange(skills.ToArray());
+                #endregion
             }
         }
 
+        /// <summary>
+        /// Redirects user back to Resource Management Page - 1.4
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void backBtn_Click(object sender, EventArgs e)
         {
 
             this.Close();
         }
 
+        /// <summary>
+        /// This method is called when the Add button is triggered
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addBtn_Click(object sender, EventArgs e)
         {
             using (var context = new Session1Entities())
@@ -60,6 +74,7 @@ namespace Session1
                                 orderby x.resId descending
                                 select x.resId).First() + 1;
 
+                //Check if intended new resource has a record in the database
                 if (checkResourceExistence != null)
                 {
                     MessageBox.Show("Resource already exist in Database!", "Duplicate Resource", MessageBoxButtons.OK,
@@ -67,21 +82,28 @@ namespace Session1
                 }
                 else
                 {
+                    //Check if the Type of Resource and and quantity is selected and keyed in properly
                     if (typeBox.SelectedItem == null || quantityBox.Text == null)
                     {
                         MessageBox.Show("Please check your entries again!", "Empty Field(s)", MessageBoxButtons.OK,
                        MessageBoxIcon.Exclamation);
                     }
+
+                    //Check if there is any allocation if quantity is more than 0. Resource must have an allocation if quantity is more than 0
                     else if (Int32.Parse(quantityBox.Text) > 0 && allocationBox.CheckedItems.Count == 0)
                     {
                         MessageBox.Show("Resource must have at least 1 allocated skill!", "Allocation of resource not set", MessageBoxButtons.OK,
                        MessageBoxIcon.Exclamation);
                     }
+
+                    //Check if user keyed in an invalid integer
                     else if (Int32.Parse(quantityBox.Text) < 0)
                     {
                         MessageBox.Show("Resource amount cannot be negative!", "Invalid Amount", MessageBoxButtons.OK,
                       MessageBoxIcon.Exclamation);
                     }
+
+                    //Check if there are any allocation if the quantity is set to 0
                     else if (Int32.Parse(quantityBox.Text) == 0 && allocationBox.CheckedItems.Count > 0)
                     {
                         MessageBox.Show("Resource cannot be allocated if amount is 0", "Unable to allocate resource",
@@ -89,6 +111,7 @@ namespace Session1
                     }
                     else
                     {
+                        //If quantity is 0, add everything keyed in except for skill allocation to DB
                         if (Int32.Parse(quantityBox.Text) == 0)
                         {
                             var getTypeID = (from x in context.Resource_Type
@@ -104,6 +127,7 @@ namespace Session1
 
                         }
 
+                        //If quantity more 0, add everything keyed in to DB
                         else if (Int32.Parse(quantityBox.Text) > 0)
                         {
                             var getTypeID = (from x in context.Resource_Type
@@ -147,6 +171,11 @@ namespace Session1
 
         }
 
+        /// <summary>
+        /// When checked, will add the skill allocation to a global list for reference to save to DB
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void allocationBox_ItemCheck(object sender, ItemCheckEventArgs e)
         {
             var item = allocationBox.SelectedItem.ToString();
