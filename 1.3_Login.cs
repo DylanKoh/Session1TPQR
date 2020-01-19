@@ -21,12 +21,14 @@ namespace Session1
         {
             using (var context = new Session1Entities())
             {
+                //Checks for empty User ID field
                 if (userBox.Text.Trim() == "")
                 {
                     MessageBox.Show("User ID field is empty!", "Empty Fields", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
                 }
 
+                //Checks for empty Password field
                 else if (passwordBox.Text.Trim() == "")
                 {
                     MessageBox.Show("Password field is empty!", "Empty Fields", MessageBoxButtons.OK,
@@ -40,24 +42,28 @@ namespace Session1
                                    join y in context.User_Type on x.userTypeIdFK equals y.userTypeId
                                    select new { Password = x.userPw, Name = x.userName, UserType = y.userTypeName }).FirstOrDefault();
 
+                    //Checks if User account exist in DB. Else prompts error message
                     if (!getUser.Password.Any())
                     {
                         MessageBox.Show("User does not exist!", "Invalid Account", MessageBoxButtons.OK,
                        MessageBoxIcon.Error);
                     }
 
+                    //Check if entered ID has password matching with what is keyed into the password field
                     else if (passwordBox.Text.Trim() != getUser.Password)
                     {
                         MessageBox.Show("Password is incorrect!", "Password Wrong", MessageBoxButtons.OK,
                        MessageBoxIcon.Error);
                     }
 
+                    //Checks for User type as application only let Resource Managers in
                     else if (getUser.UserType != "Resource Manager")
                     {
                         MessageBox.Show("Sorry, your account is not an account of a Resource Manager!", "Account invalid", MessageBoxButtons.OK,
                        MessageBoxIcon.Error);
                     }
 
+                    //Allow login if all check passes
                     else
                     {
                         MessageBox.Show($"Welcome {getUser.Name}!", "Welcome!", MessageBoxButtons.OK,
