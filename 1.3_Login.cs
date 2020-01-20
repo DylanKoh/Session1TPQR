@@ -57,7 +57,7 @@ namespace Session1
                     }
 
                     //Checks for User type as application only let Resource Managers in
-                    else if (getUser.UserType != "Resource Manager")
+                    else if (getUser.UserType != "Manager")
                     {
                         MessageBox.Show("Sorry, your account is not an account of a Resource Manager!", "Account invalid", MessageBoxButtons.OK,
                        MessageBoxIcon.Error);
