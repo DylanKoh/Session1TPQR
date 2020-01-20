@@ -13,7 +13,7 @@ namespace Session1
     public partial class Update : Form
     {
         int _resID;
-        List<string> _list = new List<string>();
+        HashSet<string> _list = new HashSet<string>();
         public Update(int resID)
         {
             InitializeComponent();
