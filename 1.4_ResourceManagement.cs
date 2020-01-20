@@ -29,6 +29,7 @@ namespace Session1
             using (var context = new Session1Entities())
             {
                 #region Populating the Type of Resources Combo nox
+                typeBox.Items.Add("No Filter");
                 HashSet<string> type = new HashSet<string>();
                 var getTypes = (from x in context.Resource_Type
                                 select x.resTypeName);
@@ -40,6 +41,7 @@ namespace Session1
                 #endregion
 
                 #region Populating the skills from DB into the Skill's Combo box
+                skilBox.Items.Add("No Filter");
                 HashSet<string> skill = new HashSet<string>();
                 var getSkills = (from x in context.Skills
                                  select x.skillName);
@@ -72,7 +74,7 @@ namespace Session1
             using (var context = new Session1Entities())
             {
                 //Loads DGV for no filters
-                if (typeBox.SelectedItem != null && skilBox.SelectedItem != null)
+                if (typeBox.SelectedItem != null && skilBox.SelectedItem != null && skilBox.SelectedItem.ToString() != "No Filter" && typeBox.SelectedItem.ToString() != "No Filter")
                 {
                     var getTypeID = (from x in context.Resource_Type
                                      where x.resTypeName == typeBox.SelectedItem.ToString()
@@ -127,7 +129,7 @@ namespace Session1
                 }
 
                 //Loads DGV when Type of Resource filter is selected
-                else if (typeBox.SelectedItem != null)
+                else if (typeBox.SelectedItem != null && typeBox.SelectedItem.ToString() != "No Filter")
                 {
                     var getTypeID = (from x in context.Resource_Type
                                      where x.resTypeName == typeBox.SelectedItem.ToString()
@@ -177,7 +179,7 @@ namespace Session1
                 }
 
                 //Loads DGV when Skill filter is selected
-                else if (skilBox.SelectedItem != null)
+                else if (skilBox.SelectedItem != null && skilBox.SelectedItem.ToString() != "No Filter")
                 {
 
                     var getSkillID = (from x in context.Skills
