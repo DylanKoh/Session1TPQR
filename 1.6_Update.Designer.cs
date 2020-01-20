@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.backBtn = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lblResourceName = new System.Windows.Forms.Label();
@@ -55,17 +55,6 @@
             this.panel1.Size = new System.Drawing.Size(921, 83);
             this.panel1.TabIndex = 0;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Verdana", 16F);
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(693, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(216, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "ASEAN Skills 2020";
-            // 
             // backBtn
             // 
             this.backBtn.Location = new System.Drawing.Point(12, 24);
@@ -74,6 +63,18 @@
             this.backBtn.TabIndex = 1;
             this.backBtn.Text = "Back";
             this.backBtn.UseVisualStyleBackColor = true;
+            this.backBtn.Click += new System.EventHandler(this.backBtn_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Verdana", 16F);
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(693, 30);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(263, 32);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "ASEAN Skills 2020";
             // 
             // label2
             // 
@@ -81,7 +82,7 @@
             this.label2.Font = new System.Drawing.Font("Verdana", 16F);
             this.label2.Location = new System.Drawing.Point(317, 86);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(208, 26);
+            this.label2.Size = new System.Drawing.Size(259, 32);
             this.label2.TabIndex = 1;
             this.label2.Text = "Update Resources";
             // 
@@ -90,7 +91,7 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(195, 140);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(148, 18);
+            this.label3.Size = new System.Drawing.Size(185, 25);
             this.label3.TabIndex = 2;
             this.label3.Text = "Resource Name: ";
             // 
@@ -99,7 +100,7 @@
             this.lblResourceName.AutoSize = true;
             this.lblResourceName.Location = new System.Drawing.Point(349, 140);
             this.lblResourceName.Name = "lblResourceName";
-            this.lblResourceName.Size = new System.Drawing.Size(58, 18);
+            this.lblResourceName.Size = new System.Drawing.Size(73, 25);
             this.lblResourceName.TabIndex = 3;
             this.lblResourceName.Text = "label4";
             // 
@@ -108,7 +109,7 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(205, 176);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(138, 18);
+            this.label5.Size = new System.Drawing.Size(173, 25);
             this.label5.TabIndex = 4;
             this.label5.Text = "Resource Type: ";
             // 
@@ -117,7 +118,7 @@
             this.lblResourceType.AutoSize = true;
             this.lblResourceType.Location = new System.Drawing.Point(349, 176);
             this.lblResourceType.Name = "lblResourceType";
-            this.lblResourceType.Size = new System.Drawing.Size(58, 18);
+            this.lblResourceType.Size = new System.Drawing.Size(73, 25);
             this.lblResourceType.TabIndex = 5;
             this.lblResourceType.Text = "label6";
             // 
@@ -126,7 +127,7 @@
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(170, 216);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(173, 18);
+            this.label7.Size = new System.Drawing.Size(215, 25);
             this.label7.TabIndex = 6;
             this.label7.Text = "Available Quantity: ";
             // 
@@ -134,7 +135,7 @@
             // 
             this.txtQuantityBox.Location = new System.Drawing.Point(349, 213);
             this.txtQuantityBox.Name = "txtQuantityBox";
-            this.txtQuantityBox.Size = new System.Drawing.Size(100, 27);
+            this.txtQuantityBox.Size = new System.Drawing.Size(100, 32);
             this.txtQuantityBox.TabIndex = 7;
             this.txtQuantityBox.TextChanged += new System.EventHandler(this.txtQuantityBox_TextChanged);
             // 
@@ -143,7 +144,7 @@
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(183, 257);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(160, 18);
+            this.label8.Size = new System.Drawing.Size(199, 25);
             this.label8.TabIndex = 8;
             this.label8.Text = "Allocated Skill(s): ";
             // 
@@ -152,7 +153,7 @@
             this.clbAllocation.FormattingEnabled = true;
             this.clbAllocation.Location = new System.Drawing.Point(349, 257);
             this.clbAllocation.Name = "clbAllocation";
-            this.clbAllocation.Size = new System.Drawing.Size(255, 158);
+            this.clbAllocation.Size = new System.Drawing.Size(255, 139);
             this.clbAllocation.TabIndex = 9;
             this.clbAllocation.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.clbAllocation_ItemCheck);
             this.clbAllocation.SelectedIndexChanged += new System.EventHandler(this.clbAllocation_SelectedIndexChanged);
@@ -169,7 +170,7 @@
             // 
             // Update
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 595);
             this.Controls.Add(this.btnUpdate);

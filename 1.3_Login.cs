@@ -40,10 +40,10 @@ namespace Session1
                     var getUser = (from x in context.Users
                                    where x.userId.Equals(userBox.Text.Trim())
                                    join y in context.User_Type on x.userTypeIdFK equals y.userTypeId
-                                   select new { Password = x.userPw, Name = x.userName, UserType = y.userTypeName }).FirstOrDefault();
+                                   select new { Password = x.userPw, Name = x.userName, UserType = y.userTypeName, ID = x.userId }).FirstOrDefault();
 
                     //Checks if User account exist in DB. Else prompts error message
-                    if (!getUser.Password.Any())
+                    if (!getUser.ID.Any())
                     {
                         MessageBox.Show("User does not exist!", "Invalid Account", MessageBoxButtons.OK,
                        MessageBoxIcon.Error);

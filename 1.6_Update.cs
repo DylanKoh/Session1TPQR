@@ -69,11 +69,10 @@ namespace Session1
 
                         clbAllocation.SetItemChecked(clbAllocation.Items.IndexOf(item), true);
 
-
                     }
                     var getAllocatedSkillsToDelete = (from x in context.Resource_Allocation
                                                       where x.resIdFK == _resID
-                                                      select x);
+                                                      select x).ToList();
                     foreach (var item in getAllocatedSkillsToDelete)
                     {
                         context.Resource_Allocation.Remove(item);
@@ -114,15 +113,21 @@ namespace Session1
         /// <param name="e"></param>
         private void clbAllocation_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            var item = clbAllocation.SelectedItem.ToString();
-            if (e.NewValue == CheckState.Checked)
+
+            if (clbAllocation.SelectedItem != null)
             {
-                _list.Add(item);
+                if (e.NewValue == CheckState.Checked)
+                {
+                    var item = clbAllocation.SelectedItem.ToString();
+                    _list.Add(item);
+                }
+                else
+                {
+                    var item = clbAllocation.SelectedItem.ToString();
+                    _list.Remove(item);
+                }
             }
-            else
-            {
-                _list.Remove(item);
-            }
+            
         }
 
         /// <summary>
@@ -201,6 +206,13 @@ namespace Session1
                 }
 
             }
+        }
+
+        private void backBtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            (new ResourceManagement()).ShowDialog();
+            this.Close();
         }
     }
 }
